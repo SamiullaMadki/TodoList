@@ -4,6 +4,9 @@ const cors = require("cors");
 const dotenv = require("dotenv").config();
 const morgan = require("morgan");
 
+//import routes
+const todoRoutes = require("./routes/todo-routes");
+
 const app = express();
 
 //middlewares
@@ -23,6 +26,8 @@ mongoose.connect(process.env.MONGO_URI,{
 app.get("/api",(req,res)=>{
     res.json("Hello World");
 })
+
+app.use("/api/todos", todoRoutes);
 
 //listen server
 const PORT = process.env.PORT||5000;
